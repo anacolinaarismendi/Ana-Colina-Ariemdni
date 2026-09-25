@@ -20,33 +20,35 @@ html_content = """<!DOCTYPE html>
     <title>Ana Colina Arismendi - Data Analyst</title>
     <style>
         :root {
-            /* Colores principales (Crema) */
-            --bg-body: #fcfaf8; 
-            --bg-alt: #f3eee6;
-            --card-bg: #ffffff;
-            --card-border: #eae2d6;
+            /* Colores principales (Azul corporativo claro) */
+            --bg-body: #f0f4f8; /* Azul corporativo muy claro 1 */
+            --bg-alt: #e2e8f0;  /* Azul corporativo claro 2 */
+            --card-bg: #ffffff; /* Blanco para tarjetas */
             
-            /* Azules */
-            --navy-dark: #1e3a5f;
-            --navy-light: #2c5282;
-            --cobalt: #367d8f; 
-            --cobalt-hover: #2a6270;
+            /* Bordes: Verde bosque claro */
+            --card-border: #b2d8b2; /* Verde bosque claro */
+            --timeline-border: #8fbc8f; /* Verde bosque más marcado para la línea */
+            
+            /* Azules corporativos */
+            --navy-dark: #1a365d; /* Azul corporativo oscuro */
+            --navy-light: #2c5282; /* Azul corporativo medio */
+            --cobalt: #3182ce; 
+            --cobalt-hover: #2b6cb0;
             
             /* Verdes para tags */
-            --slate-light: #eef7f2; 
-            --slate-text: #2b7a5f; 
+            --slate-light: #e6f2e6; 
+            --slate-text: #2e8b57; 
             
-            /* Colores acento y bordes nuevos */
-            --timeline-border: #b9d9cb;
-            --btn-accent: #e0913a; 
-            --btn-accent-hover: #c97e2f;
+            /* Vino Burdeos (Acento) */
+            --btn-accent: #722f37; 
+            --btn-accent-hover: #5a252b;
             
             /* Texto */
-            --text-main: #333333;
-            --text-muted: #5a5f66;
+            --text-main: #2d3748;
+            --text-muted: #4a5568;
             
             /* Accesibilidad */
-            --focus-ring: #367d8f;
+            --focus-ring: #722f37;
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -139,7 +141,7 @@ html_content = """<!DOCTYPE html>
         }
 
         .nav-links a:hover {
-            color: var(--cobalt);
+            color: var(--btn-accent);
         }
 
         @media (max-width: 899px) {
@@ -266,13 +268,13 @@ html_content = """<!DOCTYPE html>
 
         .btn-accent {
             background-color: var(--btn-accent);
-            color: var(--navy-dark);
+            color: #ffffff !important;
         }
         
         .btn-accent:hover {
             background-color: var(--btn-accent-hover);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(224, 145, 58, 0.4);
+            box-shadow: 0 4px 12px rgba(114, 47, 55, 0.4);
         }
 
         .btn-secondary {
@@ -317,6 +319,7 @@ html_content = """<!DOCTYPE html>
             display: flex;
             align-items: center;
             justify-content: center;
+            color: var(--btn-accent);
         }
 
         .metric-text {
@@ -384,13 +387,13 @@ html_content = """<!DOCTYPE html>
             width: 20px;
             height: 20px;
             background-color: var(--card-bg);
-            border: 4px solid var(--cobalt);
+            border: 4px solid var(--btn-accent);
             border-radius: 50%;
         }
 
         .timeline-date {
             font-weight: 700;
-            color: var(--cobalt);
+            color: var(--btn-accent);
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -475,7 +478,7 @@ html_content = """<!DOCTYPE html>
 
         .skill-item::before {
             content: '✓';
-            color: var(--slate-text);
+            color: var(--btn-accent);
             font-weight: bold;
         }
 
@@ -505,7 +508,7 @@ html_content = """<!DOCTYPE html>
         .project-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 12px 20px rgba(0,0,0,0.06);
-            border-color: var(--cobalt);
+            border-color: var(--btn-accent);
         }
 
         .project-title {
@@ -539,7 +542,7 @@ html_content = """<!DOCTYPE html>
         }
 
         .project-link {
-            color: var(--cobalt);
+            color: var(--navy-light);
             text-decoration: none;
             font-weight: 600;
             font-size: 0.9rem;
@@ -555,7 +558,8 @@ html_content = """<!DOCTYPE html>
         
         .project-link:hover {
             background-color: var(--bg-alt);
-            border-color: var(--cobalt);
+            border-color: var(--btn-accent);
+            color: var(--btn-accent);
         }
 
         /* --- Idiomas --- */
@@ -615,7 +619,7 @@ html_content = """<!DOCTYPE html>
         }
 
         .contact-btn:hover {
-            background-color: var(--cobalt);
+            background-color: var(--btn-accent);
         }
 
         .copyright {
@@ -674,25 +678,25 @@ html_content = """<!DOCTYPE html>
     <div class="metrics-container">
         <div class="metric-card">
             <div class="metric-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--navy-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
             </div>
             <div class="metric-text" data-i18n="metric_1">Conocimiento del negocio (KAM) y datos regulatorios</div>
         </div>
         <div class="metric-card">
             <div class="metric-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--navy-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
             </div>
             <div class="metric-text" data-i18n="metric_2">Python & SQL para modelado, ETL y análisis predictivo</div>
         </div>
         <div class="metric-card">
             <div class="metric-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--navy-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg>
             </div>
             <div class="metric-text" data-i18n="metric_3">Formación continua en IA y Machine Learning</div>
         </div>
         <div class="metric-card">
             <div class="metric-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--navy-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
             </div>
             <div class="metric-text" data-i18n="metric_4">Español nativo · Inglés profesional · Alemán en formación</div>
         </div>
@@ -704,7 +708,7 @@ html_content = """<!DOCTYPE html>
             <h2 class="section-title" data-i18n="section_profile">Perfil Profesional</h2>
             <div class="profile-card">
                 <p data-i18n="profile_desc">
-                    Data Analyst radicada en Frankfurt, especializada en Python y SQL para el análisis y modelado de datos. Actualmente cursando el grado de Ciencia de Datos Aplicada (UOC) y un Bootcamp en Data & IA para profundizar en Machine Learning e Inteligencia Artificial. La trayectoria previa en el sector farmacéutico —centrada en gestión de cuentas clave, farmacovigilancia y CRM— aporta una sólida visión de negocio y rigor analítico en el manejo de datos regulatorios complejos. Orientada a transformar la información en soluciones estratégicas.
+                    Data Analyst, especializada en Python y SQL para el análisis y modelado de datos. Actualmente cursando el grado de Ciencia de Datos Aplicada (UOC) y Bootcamp en Data & IA para profundizar en Machine Learning e Inteligencia Artificial. La trayectoria previa en el sector farmacéutico —centrada en gestión de cuentas clave, farmacovigilancia y CRM— aporta una sólida visión de negocio y rigor analítico en el manejo de datos regulatorios complejos y fuertes habilidades interpersonales. Orientada a transformar la información en soluciones estratégicas.
                 </p>
             </div>
         </section>
@@ -834,6 +838,11 @@ html_content = """<!DOCTYPE html>
                     <div class="timeline-title" data-i18n="edu2_title">Gestión Comercial y Marketing Farmacéutico</div>
                     <div class="timeline-subtitle">Universidad Católica del Uruguay (UCU)</div>
                 </div>
+                <div class="timeline-item">
+                    <div class="timeline-date" data-i18n="edu3_date">2012 — 2017</div>
+                    <div class="timeline-title" data-i18n="edu3_title">Estudios de Medicina en formación</div>
+                    <div class="timeline-subtitle">Universidad de la República (UdelaR)</div>
+                </div>
             </div>
         </section>
         
@@ -912,7 +921,7 @@ html_content = """<!DOCTYPE html>
                 metric_3: "Formación continua en IA y Machine Learning", 
                 metric_4: "Español nativo · Inglés profesional · Alemán en formación",
                 section_profile: "Perfil Profesional",
-                profile_desc: "Data Analyst radicada en Frankfurt, especializada en Python y SQL para el análisis y modelado de datos. Actualmente cursando el grado de Ciencia de Datos Aplicada (UOC) y un Bootcamp en Data & IA para profundizar en Machine Learning e Inteligencia Artificial. La trayectoria previa en el sector farmacéutico —centrada en gestión de cuentas clave, farmacovigilancia y CRM— aporta una sólida visión de negocio y rigor analítico en el manejo de datos regulatorios complejos. Orientada a transformar la información en soluciones estratégicas.",
+                profile_desc: "Data Analyst, especializada en Python y SQL para el análisis y modelado de datos. Actualmente cursando el grado de Ciencia de Datos Aplicada (UOC) y Bootcamp en Data & IA para profundizar en Machine Learning e Inteligencia Artificial. La trayectoria previa en el sector farmacéutico —centrada en gestión de cuentas clave, farmacovigilancia y CRM— aporta una sólida visión de negocio y rigor analítico en el manejo de datos regulatorios complejos y fuertes habilidades interpersonales. Orientada a transformar la información en soluciones estratégicas.",
                 section_exp: "Experiencia Laboral",
                 exp_date_new: "[COMPLETAR: Fecha inicio — Presente]",
                 exp_title_new: "Data Analyst / Proyectos Data Science",
@@ -933,7 +942,8 @@ html_content = """<!DOCTYPE html>
                 proj_link: "Ver repositorio", proj_demo: "Ver demo",
                 section_edu: "Educación y Formación",
                 edu1_date: "[COMPLETAR: Año] — En curso", edu1_title: "Ciencia de Datos Aplicada",
-                edu2_date: "Mar 2017 — Nov 2017", edu2_title: "Gestión Comercial y Marketing Farmacéutico", 
+                edu2_date: "Mar 2017 — Nov 2017", edu2_title: "Gestión Comercial y Marketing Farmacéutico",
+                edu3_date: "2012 — 2017", edu3_title: "Estudios de Medicina en formación", 
                 section_lang: "Idiomas", lang_es: "Español", lang_es_lvl: "Nativo", lang_en: "Inglés", lang_en_lvl: "Fluido / Profesional", lang_de: "Alemán", lang_de_lvl: "Básico (A1-A2) en formación",
                 footer_contact: "Contacto y Enlaces", footer_copy: "Todos los derechos reservados."
             },
@@ -949,7 +959,7 @@ html_content = """<!DOCTYPE html>
                 metric_3: "Continuous training in AI and Machine Learning", 
                 metric_4: "Native Spanish · Professional English · German in training",
                 section_profile: "Professional Profile",
-                profile_desc: "Data Analyst based in Frankfurt, specializing in Python and SQL for data analysis and modeling. Currently pursuing a bachelor's degree in Applied Data Science (UOC) and a Data & AI Bootcamp to deepen knowledge in Machine Learning and Artificial Intelligence. Previous experience in the pharmaceutical sector—focused on key account management, pharmacovigilance, and CRM—provides strong business acumen and analytical rigor in handling complex regulatory data. Driven to transform information into strategic solutions.",
+                profile_desc: "Data Analyst specializing in Python and SQL for data analysis and modeling. Currently pursuing a bachelor's degree in Applied Data Science (UOC) and a Data & AI Bootcamp to deepen knowledge in Machine Learning and Artificial Intelligence. Previous experience in the pharmaceutical sector—focused on key account management, pharmacovigilance, and CRM—provides strong business acumen, analytical rigor in handling complex regulatory data, and strong interpersonal skills. Driven to transform information into strategic solutions.",
                 section_exp: "Work Experience",
                 exp_date_new: "[COMPLETAR: Start Date — Present]",
                 exp_title_new: "Data Analyst / Data Science Projects",
@@ -970,7 +980,8 @@ html_content = """<!DOCTYPE html>
                 proj_link: "View repository", proj_demo: "View demo",
                 section_edu: "Education & Background",
                 edu1_date: "[COMPLETAR: Year] — In progress", edu1_title: "Applied Data Science",
-                edu2_date: "Mar 2017 — Nov 2017", edu2_title: "Commercial Management & Pharma Marketing", 
+                edu2_date: "Mar 2017 — Nov 2017", edu2_title: "Commercial Management & Pharma Marketing",
+                edu3_date: "2012 — 2017", edu3_title: "Medical Studies (In progress / Coursework)", 
                 section_lang: "Languages", lang_es: "Spanish", lang_es_lvl: "Native", lang_en: "English", lang_en_lvl: "Fluent / Professional", lang_de: "German", lang_de_lvl: "Basic (A1-A2) in training",
                 footer_contact: "Contact & Links", footer_copy: "All rights reserved."
             },
@@ -986,7 +997,7 @@ html_content = """<!DOCTYPE html>
                 metric_3: "Kontinuierliche Weiterbildung in KI und ML", 
                 metric_4: "Spanisch (Muttersprache) · Englisch (Fließend) · Deutsch (in Ausbildung)",
                 section_profile: "Berufsprofil",
-                profile_desc: "Data Analystin mit Sitz in Frankfurt, spezialisiert auf Python und SQL für Datenanalyse und Modellierung. Derzeit im Bachelorstudiengang Applied Data Science (UOC) und einem Data & AI Bootcamp zur Vertiefung der Kenntnisse in Machine Learning und Künstlicher Intelligenz. Die bisherige Erfahrung im Pharmasektor – mit Fokus auf Key Account Management, Pharmakovigilanz und CRM – bietet ein starkes Geschäftsverständnis und analytische Strenge im Umgang mit komplexen regulatorischen Daten. Darauf ausgerichtet, Informationen in strategische Lösungen zu transformieren.",
+                profile_desc: "Data Analystin, spezialisiert auf Python und SQL für Datenanalyse und Modellierung. Derzeit im Bachelorstudiengang Applied Data Science (UOC) und einem Data & AI Bootcamp zur Vertiefung der Kenntnisse in Machine Learning und Künstlicher Intelligenz. Die bisherige Erfahrung im Pharmasektor – mit Fokus auf Key Account Management, Pharmakovigilanz und CRM – bietet ein starkes Geschäftsverständnis, analytische Strenge im Umgang mit komplexen regulatorischen Daten und ausgeprägte zwischenmenschliche Fähigkeiten. Darauf ausgerichtet, Informationen in strategische Lösungen zu transformieren.",
                 section_exp: "Berufserfahrung",
                 exp_date_new: "[COMPLETAR: Startdatum — Heute]",
                 exp_title_new: "Data Analyst / Data Science Projekte",
@@ -1007,7 +1018,8 @@ html_content = """<!DOCTYPE html>
                 proj_link: "Repo ansehen", proj_demo: "Demo ansehen",
                 section_edu: "Ausbildung",
                 edu1_date: "[COMPLETAR: Jahr] — In Bearbeitung", edu1_title: "Applied Data Science",
-                edu2_date: "Mär 2017 — Nov 2017", edu2_title: "Handelsmanagement und Pharma-Marketing", 
+                edu2_date: "Mär 2017 — Nov 2017", edu2_title: "Handelsmanagement und Pharma-Marketing",
+                edu3_date: "2012 — 2017", edu3_title: "Medizinstudium (in Ausbildung)", 
                 section_lang: "Sprachen", lang_es: "Spanisch", lang_es_lvl: "Muttersprache", lang_en: "Englisch", lang_en_lvl: "Fließend / Professionell", lang_de: "Deutsch", lang_de_lvl: "Grundkenntnisse (A1-A2)",
                 footer_contact: "Kontakt & Links", footer_copy: "Alle Rechte vorbehalten."
             },
@@ -1023,7 +1035,7 @@ html_content = """<!DOCTYPE html>
                 metric_3: "Formation continue en IA et Machine Learning", 
                 metric_4: "Espagnol natif · Anglais professionnel · Allemand en formation",
                 section_profile: "Profil Professionnel",
-                profile_desc: "Data Analyst basée à Francfort, spécialisée en Python et SQL pour l'analyse et la modélisation de données. Actuellement dans la licence de Data Science Appliquée (UOC) et un Bootcamp en Data & IA pour approfondir les connaissances en Machine Learning et Intelligence Artificielle. L'expérience préalable dans le secteur pharmaceutique — axée sur la gestion des comptes clés, la pharmacovigilance et le CRM — apporte une solide vision métier et une rigueur analytique dans le traitement de données réglementaires complexes. Axée sur la transformation de l'information en solutions stratégiques.",
+                profile_desc: "Data Analyst, spécialisée en Python et SQL pour l'analyse et la modélisation de données. Actuellement dans la licence de Data Science Appliquée (UOC) et un Bootcamp en Data & IA pour approfondir les connaissances en Machine Learning et Intelligence Artificielle. L'expérience préalable dans le secteur pharmaceutique — axée sur la gestion des comptes clés, la pharmacovigilance et le CRM — apporte une solide vision métier, une rigueur analytique dans le traitement de données réglementaires complexes et de fortes compétences interpersonnelles. Axée sur la transformation de l'information en solutions stratégiques.",
                 section_exp: "Expérience Professionnelle",
                 exp_date_new: "[COMPLETAR: Date de début — Présent]",
                 exp_title_new: "Data Analyst / Projets Data Science",
@@ -1044,7 +1056,8 @@ html_content = """<!DOCTYPE html>
                 proj_link: "Voir le dépôt", proj_demo: "Voir la démo",
                 section_edu: "Éducation et Formation",
                 edu1_date: "[COMPLETAR: Année] — En cours", edu1_title: "Applied Data Science",
-                edu2_date: "Mar 2017 — Nov 2017", edu2_title: "Gestion Commerciale et Marketing Pharmaceutique", 
+                edu2_date: "Mar 2017 — Nov 2017", edu2_title: "Gestion Commerciale et Marketing Pharmaceutique",
+                edu3_date: "2012 — 2017", edu3_title: "Études de médecine (en formation)", 
                 section_lang: "Langues", lang_es: "Espagnol", lang_es_lvl: "Maternel", lang_en: "Anglais", lang_en_lvl: "Courant / Professionnel", lang_de: "Allemand", lang_de_lvl: "Basique (A1-A2)",
                 footer_contact: "Contact & Liens", footer_copy: "Tous droits réservés."
             },
@@ -1060,7 +1073,7 @@ html_content = """<!DOCTYPE html>
                 metric_3: "Formazione continua in IA e Machine Learning", 
                 metric_4: "Spagnolo madrelingua · Inglese professionale · Tedesco in formazione",
                 section_profile: "Profilo Professionale",
-                profile_desc: "Data Analyst con sede a Francoforte, specializzata in Python e SQL per l'analisi e la modellazione dei dati. Attualmente iscritta al corso di laurea in Data Science Applicata (UOC) e a un Bootcamp in Data & AI per approfondire le conoscenze in Machine Learning e Intelligenza Artificiale. L'esperienza pregressa nel settore farmaceutico — focalizzata sulla gestione dei clienti chiave, farmacovigilanza e CRM — fornisce una solida visione aziendale e rigore analitico nella gestione di complessi dati normativi. Orientata a trasformare le informazioni in soluzioni strategiche.",
+                profile_desc: "Data Analyst, specializzata in Python e SQL per l'analisi e la modellazione dei dati. Attualmente iscritta al corso di laurea in Data Science Applicata (UOC) e a un Bootcamp in Data & AI per approfondire le conoscenze in Machine Learning e Intelligenza Artificiale. L'esperienza pregressa nel settore farmaceutico — focalizzata sulla gestione dei clienti chiave, farmacovigilanza e CRM — fornisce una solida visione aziendale, rigore analitico nella gestione di complessi dati normativi e spiccate capacità interpersonali. Orientata a trasformare le informazioni in soluzioni strategiche.",
                 section_exp: "Esperienza Lavorativa",
                 exp_date_new: "[COMPLETAR: Data di inizio — Presente]",
                 exp_title_new: "Data Analyst / Progetti Data Science",
@@ -1081,7 +1094,8 @@ html_content = """<!DOCTYPE html>
                 proj_link: "Vedi repository", proj_demo: "Vedi demo",
                 section_edu: "Formazione",
                 edu1_date: "[COMPLETAR: Anno] — In corso", edu1_title: "Applied Data Science",
-                edu2_date: "Mar 2017 — Nov 2017", edu2_title: "Gestione Commerciale e Marketing Farmaceutico", 
+                edu2_date: "Mar 2017 — Nov 2017", edu2_title: "Gestione Commerciale e Marketing Farmaceutico",
+                edu3_date: "2012 — 2017", edu3_title: "Studi di Medicina (in formazione)", 
                 section_lang: "Lingue", lang_es: "Spagnolo", lang_es_lvl: "Madrelingua", lang_en: "Inglese", lang_en_lvl: "Fluente / Professionale", lang_de: "Tedesco", lang_de_lvl: "Base (A1-A2)",
                 footer_contact: "Contatti e Link", footer_copy: "Tutti i diritti riservati."
             }
@@ -1124,5 +1138,5 @@ html_content = """<!DOCTYPE html>
 </html>
 """
 
-with open('/Users/anaisabecolinaarismendi/Documents/GitHub/Ana Colina Ariemdni/index.html', 'w') as f:
+with open('/Users/anaisabecolinaarismendi/Documents/GitHub/Ana Colina Ariemdni/index.html', 'w', encoding='utf-8') as f:
     f.write(html_content)
