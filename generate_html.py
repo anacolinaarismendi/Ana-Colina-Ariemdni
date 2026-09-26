@@ -21,17 +21,17 @@ html_content = """<!DOCTYPE html>
     <style>
         :root {
             /* Colores principales (Azul corporativo claro) */
-            --bg-body: #f0f4f8; /* Azul corporativo muy claro 1 */
-            --bg-alt: #e2e8f0;  /* Azul corporativo claro 2 */
-            --card-bg: #ffffff; /* Blanco para tarjetas */
+            --bg-body: #f0f4f8; 
+            --bg-alt: #e2e8f0;  
+            --card-bg: #ffffff; 
             
-            /* Bordes: Verde bosque claro */
-            --card-border: #b2d8b2; /* Verde bosque claro */
-            --timeline-border: #8fbc8f; /* Verde bosque más marcado para la línea */
+            /* Bordes */
+            --card-border: #b2d8b2; 
+            --timeline-border: #8fbc8f; 
             
             /* Azules corporativos */
-            --navy-dark: #1a365d; /* Azul corporativo oscuro */
-            --navy-light: #2c5282; /* Azul corporativo medio */
+            --navy-dark: #1a365d; 
+            --navy-light: #378ADD; 
             --cobalt: #3182ce; 
             --cobalt-hover: #2b6cb0;
             
@@ -40,15 +40,15 @@ html_content = """<!DOCTYPE html>
             --slate-text: #2e8b57; 
             
             /* Vino Burdeos (Acento) */
-            --btn-accent: #722f37; 
-            --btn-accent-hover: #5a252b;
+            --btn-accent: #B2375E; 
+            --btn-accent-hover: #8C2A49;
             
             /* Texto */
             --text-main: #2d3748;
             --text-muted: #4a5568;
             
             /* Accesibilidad */
-            --focus-ring: #722f37;
+            --focus-ring: #B2375E;
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -66,6 +66,11 @@ html_content = """<!DOCTYPE html>
             box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
+        
+        /* Tipografía Serif para elegancia y formalidad */
+        h1, h2, h3, .logo, .project-title, .timeline-title, .skill-cluster-title, .lang-name {
+            font-family: Georgia, "Times New Roman", serif;
+        }
 
         .mono {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -74,7 +79,7 @@ html_content = """<!DOCTYPE html>
         body {
             background-color: var(--bg-body);
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.7;
             scroll-behavior: smooth;
         }
 
@@ -107,7 +112,7 @@ html_content = """<!DOCTYPE html>
         /* --- Navbar --- */
         nav {
             background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -115,7 +120,7 @@ html_content = """<!DOCTYPE html>
             justify-content: space-between;
             align-items: center;
             padding: 1rem 5%;
-            border-bottom: 1px solid var(--card-border);
+            border-bottom: 1px solid rgba(178, 216, 178, 0.5); /* Borde verde suave */
         }
 
         .menu-toggle {
@@ -129,15 +134,17 @@ html_content = """<!DOCTYPE html>
 
         .nav-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
         }
         
         .nav-links a {
-            color: var(--navy-light);
+            color: var(--navy-dark);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 0.9rem;
-            transition: color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
         }
 
         .nav-links a:hover {
@@ -178,8 +185,8 @@ html_content = """<!DOCTYPE html>
             border-radius: 6px;
             font-size: 0.8rem;
             font-weight: 700;
-            color: var(--navy-light);
-            transition: all 0.2s;
+            color: var(--navy-dark);
+            transition: all 0.3s ease;
         }
 
         .lang-btn:hover {
@@ -187,239 +194,296 @@ html_content = """<!DOCTYPE html>
         }
 
         .lang-btn.active {
-            background-color: var(--slate-light);
-            color: var(--slate-text);
-            border-color: var(--slate-text);
+            background-color: rgba(178, 55, 94, 0.1);
+            color: var(--btn-accent);
+            border-color: rgba(178, 55, 94, 0.3);
         }
 
         /* --- Hero Header --- */
         header {
-            background: linear-gradient(135deg, var(--navy-dark), var(--navy-light));
+            background: linear-gradient(135deg, var(--navy-dark) 0%, #2A4365 60%, #46253b 100%);
             color: white;
-            padding: 5rem 5%;
+            padding: 6rem 5%;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.03) 10%, transparent 10%), radial-gradient(circle, rgba(255,255,255,0.03) 10%, transparent 10%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 0.5;
+            pointer-events: none;
         }
 
         .avatar {
-            width: 140px;
-            height: 140px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--bg-body);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-            margin-bottom: 1.5rem;
+            border: 3px solid rgba(255,255,255,0.8);
+            box-shadow: 0 0 0 6px rgba(255,255,255,0.1), 0 15px 35px rgba(0,0,0,0.4);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.5s ease;
+        }
+        
+        .avatar:hover {
+            transform: scale(1.05);
         }
 
         header h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-size: clamp(2.5rem, 6vw, 4rem);
             margin-bottom: 0.5rem;
-            font-weight: 800;
-            letter-spacing: -1px;
+            font-weight: normal;
+            letter-spacing: -0.5px;
+            position: relative;
+            z-index: 2;
         }
 
         header p.hero-subtitle {
             font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-            font-weight: 400;
-            color: var(--bg-alt);
-            margin-bottom: 1.5rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 2rem;
             max-width: 700px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
         }
 
         .pills {
             display: flex;
-            gap: 0.8rem;
+            gap: 1rem;
             flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
         }
 
         .pill {
-            background-color: rgba(255,255,255,0.15);
-            backdrop-filter: blur(4px);
-            padding: 6px 14px;
-            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.95);
+            color: var(--navy-dark);
+            padding: 8px 18px;
+            border-radius: 30px;
             font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid rgba(255,255,255,0.2);
+            font-weight: 700;
+            border: 2px solid #248A64;
             letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .pill:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            border-color: var(--btn-accent);
         }
 
         .actions {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
             justify-content: center;
+            position: relative;
+            z-index: 2;
         }
 
         .btn {
-            padding: 10px 24px;
-            border-radius: 8px;
-            font-weight: 700;
+            padding: 12px 32px;
+            border-radius: 30px;
+            font-weight: 600;
             text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s ease;
             display: inline-block;
             cursor: pointer;
             border: none;
-            font-size: 0.95rem;
-        }
-
-        .btn-accent {
-            background-color: var(--btn-accent);
-            color: #ffffff !important;
-        }
-        
-        .btn-accent:hover {
-            background-color: var(--btn-accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(114, 47, 55, 0.4);
+            font-size: 1rem;
+            letter-spacing: 0.5px;
         }
 
         .btn-secondary {
             background-color: transparent;
             color: white;
-            border: 2px solid white;
+            border: 2px solid rgba(255,255,255,0.6);
         }
 
         .btn-secondary:hover {
             background-color: white;
             color: var(--navy-dark);
             transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
         /* --- Panel Métricas --- */
         .metrics-container {
-            max-width: 1000px;
-            margin: -3rem auto 2rem;
+            max-width: 1100px;
+            margin: -4rem auto 3rem;
             padding: 0 5%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
             position: relative;
             z-index: 10;
         }
 
-        .metric-card {
+        /* Estilo general de las tarjetas para darles elegancia */
+        .metric-card, .profile-card, .timeline-content, .skill-cluster, .project-card, .lang-card {
             background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+            border: 1px solid rgba(178, 216, 178, 0.4);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px -10px rgba(26, 54, 93, 0.08); /* Sombra difusa y sofisticada */
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .metric-card {
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
+        
+        .metric-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(26, 54, 93, 0.12);
+        }
 
         .metric-icon {
-            margin-bottom: 0.8rem;
+            margin-bottom: 1.2rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--btn-accent);
+        }
+        
+        .metric-icon svg {
+            width: 46px;
+            height: 46px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
+        .metric-card:hover .metric-icon svg {
+            transform: scale(1.2) translateY(-4px);
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+        }
+
+        .icon-blue { stroke: #378ADD; fill: rgba(55, 138, 221, 0.12); }
+        .icon-green { stroke: #248A64; fill: rgba(36, 138, 100, 0.12); }
+        .icon-wine { stroke: #B2375E; fill: rgba(178, 55, 94, 0.12); }
+        .icon-gold { stroke: #D97706; fill: rgba(217, 119, 6, 0.12); }
+
         .metric-text {
-            font-size: 0.95rem;
-            font-weight: 600;
+            font-size: 1rem;
+            font-weight: 500;
             color: var(--navy-dark);
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         /* --- Main Content --- */
         main {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 2rem 5%;
+            padding: 3rem 5%;
         }
 
         section {
-            margin-bottom: 4rem;
+            margin-bottom: 6rem;
         }
 
         .section-title {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             color: var(--navy-dark);
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            justify-content: center;
+            gap: 1.5rem;
+            text-align: center;
+            font-weight: normal;
         }
 
+        .section-title::before,
         .section-title::after {
             content: '';
-            height: 2px;
+            height: 1px;
             flex-grow: 1;
-            background-color: var(--card-border);
+            background: linear-gradient(90deg, transparent, var(--btn-accent), transparent);
+            opacity: 0.4;
         }
 
         /* --- Perfil --- */
         .profile-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 2.5rem;
-            border-radius: 16px;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             color: var(--text-muted);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            line-height: 1.8;
+            text-align: justify;
         }
 
         /* --- Timeline (Exp & Edu) --- */
         .timeline {
-            border-left: 3px solid var(--timeline-border);
-            padding-left: 2rem;
+            border-left: 2px solid var(--timeline-border);
+            padding-left: 2.5rem;
             margin-left: 1rem;
         }
 
         .timeline-item {
             position: relative;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        @keyframes subtlePulse {
+            0% { box-shadow: 0 0 0 0 rgba(178, 55, 94, 0.3); }
+            70% { box-shadow: 0 0 0 10px rgba(178, 55, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(178, 55, 94, 0); }
         }
 
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -2.65rem;
-            top: 0;
-            width: 20px;
-            height: 20px;
-            background-color: var(--card-bg);
-            border: 4px solid var(--btn-accent);
+            left: -3.2rem;
+            top: 0.2rem;
+            width: 22px;
+            height: 22px;
+            background-color: var(--bg-body);
+            border: 5px solid var(--btn-accent);
             border-radius: 50%;
+            animation: subtlePulse 3s infinite;
         }
 
         .timeline-date {
-            font-weight: 700;
+            font-weight: 600;
             color: var(--btn-accent);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            font-family: ui-monospace, SFMono-Regular, monospace;
         }
 
         .timeline-title {
-            font-size: 1.3rem;
-            font-weight: 700;
+            font-size: 1.6rem;
+            font-weight: normal;
             color: var(--navy-dark);
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.3rem;
         }
 
         .timeline-subtitle {
             font-weight: 600;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-
-        .timeline-content {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            color: var(--navy-light);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .timeline-content ul {
@@ -428,7 +492,7 @@ html_content = """<!DOCTYPE html>
         }
 
         .timeline-content li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
         }
 
         /* --- Habilidades en Clusters --- */
@@ -443,157 +507,157 @@ html_content = """<!DOCTYPE html>
                 grid-template-columns: repeat(3, 1fr);
             }
         }
-
-        .skill-cluster {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        
+        .skill-cluster:hover {
+            transform: translateY(-5px);
+            border-color: var(--btn-accent);
         }
 
         .skill-cluster-title {
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             color: var(--navy-dark);
-            margin-bottom: 1.2rem;
-            font-weight: 700;
-            border-bottom: 2px solid var(--bg-alt);
-            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: normal;
+            border-bottom: 1px solid rgba(178, 55, 94, 0.2);
+            padding-bottom: 0.8rem;
+            text-align: center;
         }
 
         .skill-list {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
+            gap: 1rem;
         }
 
         .skill-item {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
             font-weight: 500;
             color: var(--text-muted);
         }
 
         .skill-item::before {
-            content: '✓';
+            content: '♦';
             color: var(--btn-accent);
-            font-weight: bold;
+            font-size: 1.2rem;
         }
 
         /* --- Proyectos --- */
         .projects-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         @media (min-width: 768px) {
             .projects-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             }
         }
 
         .project-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: transform 0.2s, box-shadow 0.2s;
             display: flex;
             flex-direction: column;
         }
 
         .project-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.06);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(26, 54, 93, 0.15);
             border-color: var(--btn-accent);
         }
 
         .project-title {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: var(--navy-dark);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+            font-weight: normal;
+            margin-bottom: 0.8rem;
         }
 
         .project-desc {
             color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            margin-bottom: 2rem;
             flex-grow: 1;
+            line-height: 1.6;
         }
 
         .project-tech {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-bottom: 1rem;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .tech-tag {
             background-color: var(--slate-light);
             color: var(--slate-text);
-            padding: 4px 10px;
-            border-radius: 6px;
+            padding: 5px 12px;
+            border-radius: 20px;
             font-size: 0.75rem;
-            font-weight: 700;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(46, 139, 87, 0.2);
         }
 
         .project-link {
             color: var(--navy-light);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             display: inline-flex;
             align-items: center;
-            gap: 0.3rem;
-            padding: 6px 12px;
-            background-color: var(--bg-body);
-            border-radius: 6px;
+            gap: 0.5rem;
+            padding: 8px 16px;
+            background-color: transparent;
+            border-radius: 30px;
             border: 1px solid var(--card-border);
-            transition: all 0.2s;
+            transition: all 0.3s ease;
         }
         
         .project-link:hover {
-            background-color: var(--bg-alt);
+            background-color: var(--btn-accent);
             border-color: var(--btn-accent);
-            color: var(--btn-accent);
+            color: white;
         }
 
         /* --- Idiomas --- */
         .lang-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
+            gap: 1.5rem;
         }
         
         .lang-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 1.5rem;
-            border-radius: 12px;
             text-align: center;
+        }
+        
+        .lang-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--navy-light);
         }
 
         .lang-name {
-            font-weight: 700;
+            font-weight: normal;
             color: var(--navy-dark);
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
         }
 
         .lang-level {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
         }
 
         /* --- Footer & Contact --- */
         footer {
             background-color: var(--navy-dark);
             color: white;
-            padding: 4rem 5% 2rem;
+            padding: 5rem 5% 3rem;
             text-align: center;
         }
 
@@ -602,31 +666,36 @@ html_content = """<!DOCTYPE html>
             justify-content: center;
             flex-wrap: wrap;
             gap: 1.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         .contact-btn {
-            background-color: rgba(255,255,255,0.1);
+            background-color: rgba(255,255,255,0.05);
             color: white;
-            padding: 12px 24px;
+            padding: 14px 28px;
             border-radius: 30px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            transition: background-color 0.2s;
+            gap: 0.8rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
         }
 
         .contact-btn:hover {
             background-color: var(--btn-accent);
+            border-color: var(--btn-accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
         .copyright {
-            color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.5);
             font-size: 0.9rem;
             border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 2rem;
+            padding-top: 2.5rem;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -635,7 +704,7 @@ html_content = """<!DOCTYPE html>
 
     <!-- Navegación -->
     <nav>
-        <div class="logo" style="font-weight: 800; color: var(--navy-dark); letter-spacing: -0.5px;">A. Colina</div>
+        <div class="logo" style="font-size: 1.2rem; font-weight: normal; color: var(--navy-dark); letter-spacing: 1px;">A. Colina</div>
         
         <button class="menu-toggle" aria-expanded="false" aria-label="Abrir menú" onclick="toggleMenu()">☰</button>
         
@@ -659,7 +728,7 @@ html_content = """<!DOCTYPE html>
     <header>
         <img src="profile.jpg" alt="Ana Colina Arismendi" class="avatar">
         <h1>Ana Colina Arismendi</h1>
-        <p class="hero-subtitle" data-i18n="hero_title">Data Analyst / Junior Data Scientist</p>
+        <p class="hero-subtitle" data-i18n="hero_title">📊 Data Analyst / Junior Data Scientist</p>
         
         <div class="pills mono">
             <span class="pill">Python</span>
@@ -669,7 +738,6 @@ html_content = """<!DOCTYPE html>
         </div>
 
         <div class="actions">
-            <a href="CV_AColina_ES.pdf" id="cv-link" target="_blank" class="btn btn-accent" data-i18n="btn_cv">Descargar CV (PDF)</a>
             <a href="#contact" class="btn btn-secondary" data-i18n="btn_contact">Contactar</a>
         </div>
     </header>
@@ -678,25 +746,25 @@ html_content = """<!DOCTYPE html>
     <div class="metrics-container">
         <div class="metric-card">
             <div class="metric-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                <svg class="icon-blue" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
             </div>
             <div class="metric-text" data-i18n="metric_1">Conocimiento del negocio (KAM) y datos regulatorios</div>
         </div>
         <div class="metric-card">
             <div class="metric-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                <svg class="icon-green" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
             </div>
             <div class="metric-text" data-i18n="metric_2">Python & SQL para modelado, ETL y análisis predictivo</div>
         </div>
         <div class="metric-card">
             <div class="metric-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg>
+                <svg class="icon-wine" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
             </div>
             <div class="metric-text" data-i18n="metric_3">Formación continua en IA y Machine Learning</div>
         </div>
         <div class="metric-card">
             <div class="metric-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                <svg class="icon-gold" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
             </div>
             <div class="metric-text" data-i18n="metric_4">Español nativo · Inglés profesional · Alemán en formación</div>
         </div>
@@ -718,29 +786,58 @@ html_content = """<!DOCTYPE html>
             <h2 class="section-title" data-i18n="section_exp">Experiencia Laboral</h2>
             <div class="timeline">
                 
-                <!-- Puesto Actual -->
+                <!-- Formación y Proyectos UOC -->
                 <div class="timeline-item">
-                    <div class="timeline-date" data-i18n="exp_date_new">[COMPLETAR: Fecha inicio — Presente]</div>
-                    <div class="timeline-title" data-i18n="exp_title_new">Data Analyst / Proyectos Data Science</div>
-                    <div class="timeline-subtitle" data-i18n="exp_subtitle_new">[COMPLETAR: Empresa o Freelance]</div>
+                    <div class="timeline-date" data-i18n="exp_date_uoc">2024 — Presente</div>
+                    <div class="timeline-title" data-i18n="exp_title_uoc">Formación y Proyectos en Ciencia de Datos (autodidacta)</div>
+                    <div class="timeline-subtitle" data-i18n="exp_subtitle_uoc">UOC — Ciencia de Datos Aplicada</div>
                     <div class="timeline-content">
                         <ul>
-                            <li data-i18n="exp_bullet1_new"><strong>[COMPLETAR: Acción]:</strong> empleando [COMPLETAR: Herramienta/Tecnología] logrando [COMPLETAR: Resultado/Cifra].</li>
-                            <li data-i18n="exp_bullet2_new"><strong>[COMPLETAR: Acción]:</strong> empleando [COMPLETAR: Herramienta/Tecnología] logrando [COMPLETAR: Resultado/Cifra].</li>
+                            <li data-i18n="exp_uoc_bullet1">Cursé formación estructurada en Python (pandas, programación orientada a objetos, control de flujo, manejo de excepciones) y control de versiones con Git/GitHub.</li>
+                            <li data-i18n="exp_uoc_bullet2">Desarrollé un pipeline de ingesta y almacenamiento (SQLite) de artículos científicos de PubMed sobre enfermedad cardiovascular, con un asistente de consulta basado en RAG.</li>
+                            <li data-i18n="exp_uoc_bullet3">Construí un modelo de predicción de riesgo cardiovascular: limpieza de datos, ingeniería de variables y pipeline de preprocesamiento, comunicado en una app interactiva y una presentación con estadística embebida.</li>
+                            <li data-i18n="exp_uoc_bullet4">Diseñé y desplegué (Next.js, Vercel) un portal de proyectos de datos y, como proyecto de curso, el sitio de un caso práctico simulando la creación de una startup de datos.</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Puesto Anterior -->
+                <!-- Cursos -->
+                <div class="timeline-item">
+                    <div class="timeline-date" data-i18n="exp_date_courses">Feb 2023 — Jul 2023</div>
+                    <div class="timeline-title" data-i18n="exp_title_courses">Cursos</div>
+                    <div class="timeline-subtitle" data-i18n="exp_subtitle_courses">FomentFormacio, Barcelona</div>
+                    <div class="timeline-content">
+                        <ul>
+                            <li data-i18n="exp_courses_bullet1">Marketing Digital, SEO, SEM y Analítica Web.</li>
+                            <li data-i18n="exp_courses_bullet2">Google Analytics y Google Metatags.</li>
+                            <li data-i18n="exp_courses_bullet3">Marketing Digital.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Academia Aula -->
+                <div class="timeline-item">
+                    <div class="timeline-date" data-i18n="exp_date_aula">Feb 2019 — Nov 2022</div>
+                    <div class="timeline-title" data-i18n="exp_title_aula">Docente de Ciencias</div>
+                    <div class="timeline-subtitle">Academia Aula, Sevilla</div>
+                    <div class="timeline-content">
+                        <ul>
+                            <li data-i18n="exp_aula_bullet1"><strong>Comunicación de Datos Complejos:</strong> Traduje conceptos científicos complejos a un lenguaje accesible, habilidad esencial para el data storytelling y la presentación de insights a stakeholders de negocio.</li>
+                            <li data-i18n="exp_aula_bullet2"><strong>Seguimiento de Rendimiento:</strong> Analicé y evalué métricas de progreso de los estudiantes para iterar y optimizar las metodologías de enseñanza, mejorando los resultados académicos.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Laboratorios Pellier -->
                 <div class="timeline-item">
                     <div class="timeline-date" data-i18n="exp_date">Ene 2015 — Oct 2017</div>
-                    <div class="timeline-title" data-i18n="exp_title">Representante Comercial (KAM)</div>
+                    <div class="timeline-title" data-i18n="exp_title">Visitadora Médica / KAM</div>
                     <div class="timeline-subtitle">Laboratorios Pellier</div>
                     <div class="timeline-content">
                         <ul>
-                            <li data-i18n="exp_bullet1"><strong>Gestión de Cuentas Clave:</strong> Lideré la planificación estratégica y prospección utilizando [COMPLETAR: Herramienta CRM/Software], incrementando la cartera en un [COMPLETAR: %/Cifra].</li>
-                            <li data-i18n="exp_bullet2"><strong>Farmacovigilancia:</strong> Analicé y reporté datos de seguridad de medicamentos biológicos mediante [COMPLETAR: Herramienta/BBDD], asegurando un 100% de cumplimiento regulatorio.</li>
-                            <li data-i18n="exp_bullet4"><strong>Optimización CRM:</strong> Integré y analicé datos transaccionales con [COMPLETAR: Herramienta, ej. Excel/SQL/CRM], mitigando riesgos comerciales en [COMPLETAR: Cifra] cuentas clave.</li>
+                            <li data-i18n="exp_bullet1"><strong>Análisis y Gestión CRM:</strong> Administré la información de pacientes e interacciones médicas en sistemas CRM, utilizando los datos para optimizar la prospección y gestionar cuentas clave (Neurología, Pediatría y Cirugía Plástica).</li>
+                            <li data-i18n="exp_bullet2"><strong>Farmacovigilancia y Calidad de Datos:</strong> Recopilé y reporté rigurosamente datos de seguridad y seguimiento de pacientes con Esclerosis Múltiple, colaborando con neurólogos para asegurar la precisión de la información clínica.</li>
+                            <li data-i18n="exp_bullet4"><strong>Optimización de Prácticas:</strong> Participé en el diseño de nuevas prácticas de atención mediante el análisis de feedback cualitativo en el uso de kits de medicamentos, orientando las soluciones al usuario.</li>
                         </ul>
                     </div>
                 </div>
@@ -790,34 +887,48 @@ html_content = """<!DOCTYPE html>
             <div class="projects-grid">
                 
                 <div class="project-card">
-                    <div class="project-title" data-i18n="proj1_title">Predicción de Riesgo Cardiovascular</div>
+                    <div class="project-title" data-i18n="proj1_title">SafeRx AI - Asistente Clínico Inteligente</div>
+                    <div class="project-tech mono">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">Next.js</span>
+                    </div>
+                    <div class="project-desc" data-i18n="proj1_desc">
+                        Sistema de soporte a la decisión clínica (CDSS) impulsado por IA para la detección de incompatibilidades farmacológicas y prevención de eventos adversos.
+                    </div>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: auto;">
+                        <a href="https://github.com/anacolinaarismendi/saferx-ai" target="_blank" class="project-link">🔗 <span data-i18n="proj_link">Ver repositorio</span></a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title" data-i18n="proj2_title">Predicción de Riesgo Cardiovascular</div>
                     <div class="project-tech mono">
                         <span class="tech-tag">Python</span>
                         <span class="tech-tag">Scikit-learn</span>
                         <span class="tech-tag">Streamlit</span>
                     </div>
-                    <div class="project-desc" data-i18n="proj1_desc">
-                        Modelo de Machine Learning interactivo implementado con Scikit-learn y Streamlit para la predicción de riesgos a partir de métricas de salud estandarizadas.
+                    <div class="project-desc" data-i18n="proj2_desc">
+                        Modelo predictivo de Machine Learning y análisis epidemiológico sobre datos del Framingham Heart Study para evaluar el riesgo coronario a 10 años.
                     </div>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: auto;">
-                        <a href="[COMPLETAR: URL del repo]" target="_blank" class="project-link">🔗 <span data-i18n="proj_link">Ver repositorio</span></a>
-                        <a href="[COMPLETAR: URL de demo]" target="_blank" class="project-link">🌐 <span data-i18n="proj_demo">Ver demo</span></a>
+                        <a href="https://github.com/anacolinaarismendi/Cardiovascular-Disease" target="_blank" class="project-link">🔗 <span data-i18n="proj_link">Ver repositorio</span></a>
                     </div>
                 </div>
 
                 <div class="project-card">
-                    <div class="project-title" data-i18n="proj2_title">Consumo y Análisis de APIs con Python</div>
+                    <div class="project-title" data-i18n="proj3_title">Spotify Data Analysis</div>
                     <div class="project-tech mono">
-                        <span class="tech-tag">ETL</span>
+                        <span class="tech-tag">Python</span>
                         <span class="tech-tag">Pandas</span>
-                        <span class="tech-tag">GeoJSON</span>
+                        <span class="tech-tag">Data Visualization</span>
                     </div>
-                    <div class="project-desc" data-i18n="proj2_desc">
-                        Pipeline ETL extrayendo datos de terremotos globales de USGS mediante APIs REST, procesamiento de datos estructurados con Pandas y mapeo GeoJSON.
+                    <div class="project-desc" data-i18n="proj3_desc">
+                        Análisis exploratorio de datos (EDA) y visualización de métricas de audio y popularidad para extraer insights sobre tendencias musicales en Spotify.
                     </div>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: auto;">
-                        <a href="[COMPLETAR: URL del repo]" target="_blank" class="project-link">🔗 <span data-i18n="proj_link">Ver repositorio</span></a>
-                        <a href="[COMPLETAR: URL de demo]" target="_blank" class="project-link">🌐 <span data-i18n="proj_demo">Ver demo</span></a>
+                        <a href="https://github.com/anacolinaarismendi/spotify" target="_blank" class="project-link">🔗 <span data-i18n="proj_link">Ver repositorio</span></a>
                     </div>
                 </div>
 
@@ -829,7 +940,7 @@ html_content = """<!DOCTYPE html>
             <h2 class="section-title" data-i18n="section_edu">Educación y Formación</h2>
             <div class="timeline">
                 <div class="timeline-item">
-                    <div class="timeline-date" data-i18n="edu1_date">[COMPLETAR: Año] — En curso</div>
+                    <div class="timeline-date" data-i18n="edu1_date">2024 — En curso</div>
                     <div class="timeline-title" data-i18n="edu1_title">Ciencia de Datos Aplicada</div>
                     <div class="timeline-subtitle">Universitat Oberta de Catalunya (UOC)</div>
                 </div>
@@ -867,7 +978,7 @@ html_content = """<!DOCTYPE html>
     </main>
 
     <footer id="contact">
-        <h2 style="margin-bottom: 2rem;" data-i18n="footer_contact">Contacto y Enlaces</h2>
+        <h2 style="margin-bottom: 2rem; font-family: Georgia, serif; font-weight: normal;" data-i18n="footer_contact">Contacto y Enlaces</h2>
         <div class="contact-links">
             <a href="mailto:acolinaarismendi@gmail.com" class="contact-btn">
                 ✉️ acolinaarismendi@gmail.com
@@ -913,7 +1024,7 @@ html_content = """<!DOCTYPE html>
                 doc_title: "Ana Colina Arismendi - Data Analyst",
                 skip_link: "Saltar al contenido",
                 nav_profile: "Perfil", nav_exp: "Experiencia", nav_edu: "Educación", nav_skills: "Habilidades", nav_projects: "Proyectos",
-                hero_title: "Data Analyst / Junior Data Scientist",
+                hero_title: "📊 Data Analyst / Junior Data Scientist",
                 pill_ml: "Machine Learning", pill_pharma: "Farmacovigilancia",
                 btn_cv: "Descargar CV (PDF)", btn_contact: "Contactar",
                 metric_1: "Conocimiento del negocio (KAM) y datos regulatorios", 
@@ -923,25 +1034,37 @@ html_content = """<!DOCTYPE html>
                 section_profile: "Perfil Profesional",
                 profile_desc: "Data Analyst, especializada en Python y SQL para el análisis y modelado de datos. Actualmente cursando el grado de Ciencia de Datos Aplicada (UOC) y Bootcamp en Data & IA para profundizar en Machine Learning e Inteligencia Artificial. La trayectoria previa en el sector farmacéutico —centrada en gestión de cuentas clave, farmacovigilancia y CRM— aporta una sólida visión de negocio y rigor analítico en el manejo de datos regulatorios complejos y fuertes habilidades interpersonales. Orientada a transformar la información en soluciones estratégicas.",
                 section_exp: "Experiencia Laboral",
-                exp_date_new: "[COMPLETAR: Fecha inicio — Presente]",
-                exp_title_new: "Data Analyst / Proyectos Data Science",
-                exp_subtitle_new: "[COMPLETAR: Empresa o Freelance]",
-                exp_bullet1_new: "<strong>[COMPLETAR: Acción]:</strong> empleando [COMPLETAR: Herramienta/Tecnología] logrando [COMPLETAR: Resultado/Cifra].",
-                exp_bullet2_new: "<strong>[COMPLETAR: Acción]:</strong> empleando [COMPLETAR: Herramienta/Tecnología] logrando [COMPLETAR: Resultado/Cifra].",
-                exp_date: "Ene 2015 — Oct 2017", exp_title: "Representante Comercial (KAM)",
-                exp_bullet1: "<strong>Gestión de Cuentas Clave:</strong> Lideré la planificación estratégica y prospección utilizando [COMPLETAR: Herramienta CRM/Software], incrementando la cartera en un [COMPLETAR: %/Cifra].",
-                exp_bullet2: "<strong>Farmacovigilancia:</strong> Analicé y reporté datos de seguridad de medicamentos biológicos mediante [COMPLETAR: Herramienta/BBDD], asegurando un 100% de cumplimiento regulatorio.",
-                exp_bullet4: "<strong>Optimización CRM:</strong> Integré y analicé datos transaccionales con [COMPLETAR: Herramienta, ej. Excel/SQL/CRM], mitigando riesgos comerciales en [COMPLETAR: Cifra] cuentas clave.",
+                exp_date_uoc: "2024 — Presente",
+                exp_title_uoc: "Formación y Proyectos en Ciencia de Datos (autodidacta)",
+                exp_subtitle_uoc: "UOC — Ciencia de Datos Aplicada",
+                exp_uoc_bullet1: "Cursé formación estructurada en Python (pandas, programación orientada a objetos, control de flujo, manejo de excepciones) y control de versiones con Git/GitHub.",
+                exp_uoc_bullet2: "Desarrollé un pipeline de ingesta y almacenamiento (SQLite) de artículos científicos de PubMed sobre enfermedad cardiovascular, con un asistente de consulta basado en RAG.",
+                exp_uoc_bullet3: "Construí un modelo de predicción de riesgo cardiovascular: limpieza de datos, ingeniería de variables y pipeline de preprocesamiento, comunicado en una app interactiva y una presentación con estadística embebida.",
+                exp_uoc_bullet4: "Diseñé y desplegué (Next.js, Vercel) un portal de proyectos de datos y, como proyecto de curso, el sitio de un caso práctico simulando la creación de una startup de datos.",
+                exp_date_courses: "Feb 2023 — Jul 2023",
+                exp_title_courses: "Cursos",
+                exp_subtitle_courses: "FomentFormacio, Barcelona",
+                exp_courses_bullet1: "Marketing Digital, SEO, SEM y Analítica Web.",
+                exp_courses_bullet2: "Google Analytics y Google Metatags.",
+                exp_courses_bullet3: "Marketing Digital.",
+                exp_date_aula: "Feb 2019 — Nov 2022", exp_title_aula: "Docente de Ciencias",
+                exp_aula_bullet1: "<strong>Comunicación de Datos Complejos:</strong> Traduje conceptos científicos complejos a un lenguaje accesible, habilidad esencial para el data storytelling y la presentación de insights a stakeholders de negocio.",
+                exp_aula_bullet2: "<strong>Seguimiento de Rendimiento:</strong> Analicé y evalué métricas de progreso de los estudiantes para iterar y optimizar las metodologías de enseñanza, mejorando los resultados académicos.",
+                exp_date: "Ene 2015 — Oct 2017", exp_title: "Visitadora Médica / KAM",
+                exp_bullet1: "<strong>Análisis y Gestión CRM:</strong> Administré la información de pacientes e interacciones médicas en sistemas CRM, utilizando los datos para optimizar la prospección y gestionar cuentas clave (Neurología, Pediatría y Cirugía Plástica).",
+                exp_bullet2: "<strong>Farmacovigilancia y Calidad de Datos:</strong> Recopilé y reporté rigurosamente datos de seguridad y seguimiento de pacientes con Esclerosis Múltiple, colaborando con neurólogos para asegurar la precisión de la información clínica.",
+                exp_bullet4: "<strong>Optimización de Prácticas:</strong> Participé en el diseño de nuevas prácticas de atención mediante el análisis de feedback cualitativo en el uso de kits de medicamentos, orientando las soluciones al usuario.",
                 section_skills: "Habilidades por Dominio",
                 skill_group1: "Ciencia de Datos & Análisis", skill_api: "Consumo de APIs",
                 skill_group2: "Sector Farmacéutico", skill_pharma: "Farmacovigilancia", skill_bio: "Fármacos Biológicos", skill_safety: "Datos Regulatorios",
                 skill_group3: "Estrategia & KAM", skill_crm: "Sistemas CRM", skill_plan: "Visión de Negocio", skill_risk: "Gestión de Riesgos",
                 section_projects: "Proyectos Data Science",
-                proj1_title: "Predicción de Riesgo Cardiovascular", proj1_desc: "Modelo de Machine Learning interactivo implementado con Scikit-learn y Streamlit para la predicción de riesgos a partir de métricas de salud estandarizadas.",
-                proj2_title: "Consumo y Análisis de APIs con Python", proj2_desc: "Pipeline ETL extrayendo datos de terremotos globales de USGS mediante APIs REST, procesamiento de datos estructurados con Pandas y mapeo GeoJSON.",
-                proj_link: "Ver repositorio", proj_demo: "Ver demo",
+                proj1_title: "SafeRx AI - Asistente Clínico Inteligente", proj1_desc: "Sistema de soporte a la decisión clínica (CDSS) impulsado por IA para la detección de incompatibilidades farmacológicas y prevención de eventos adversos.",
+                proj2_title: "Predicción de Riesgo Cardiovascular", proj2_desc: "Modelo predictivo de Machine Learning y análisis epidemiológico sobre datos del Framingham Heart Study para evaluar el riesgo coronario a 10 años.",
+                proj3_title: "Spotify Data Analysis", proj3_desc: "Análisis exploratorio de datos (EDA) y visualización de métricas de audio y popularidad para extraer insights sobre tendencias musicales en Spotify.",
+                proj_link: "Ver repositorio",
                 section_edu: "Educación y Formación",
-                edu1_date: "[COMPLETAR: Año] — En curso", edu1_title: "Ciencia de Datos Aplicada",
+                edu1_date: "2024 — En curso", edu1_title: "Ciencia de Datos Aplicada",
                 edu2_date: "Mar 2017 — Nov 2017", edu2_title: "Gestión Comercial y Marketing Farmacéutico",
                 edu3_date: "2012 — 2017", edu3_title: "Estudios de Medicina en formación", 
                 section_lang: "Idiomas", lang_es: "Español", lang_es_lvl: "Nativo", lang_en: "Inglés", lang_en_lvl: "Fluido / Profesional", lang_de: "Alemán", lang_de_lvl: "Básico (A1-A2) en formación",
@@ -951,7 +1074,7 @@ html_content = """<!DOCTYPE html>
                 doc_title: "Ana Colina Arismendi - Data Analyst",
                 skip_link: "Skip to content",
                 nav_profile: "Profile", nav_exp: "Experience", nav_edu: "Education", nav_skills: "Skills", nav_projects: "Projects",
-                hero_title: "Data Analyst / Junior Data Scientist",
+                hero_title: "📊 Data Analyst / Junior Data Scientist",
                 pill_ml: "Machine Learning", pill_pharma: "Pharmacovigilance",
                 btn_cv: "Download CV (PDF)", btn_contact: "Contact",
                 metric_1: "Business acumen (KAM) and regulatory data", 
@@ -975,11 +1098,12 @@ html_content = """<!DOCTYPE html>
                 skill_group2: "Pharmaceutical Sector", skill_pharma: "Pharmacovigilance", skill_bio: "Biological Drugs", skill_safety: "Regulatory Data",
                 skill_group3: "Strategy & KAM", skill_crm: "CRM Systems", skill_plan: "Business Acumen", skill_risk: "Risk Management",
                 section_projects: "Data Science Projects",
-                proj1_title: "Cardiovascular Risk Prediction", proj1_desc: "Interactive Machine Learning model implemented with Scikit-learn and Streamlit for risk prediction based on standardized health metrics.",
-                proj2_title: "API Consumption & Analysis with Python", proj2_desc: "ETL pipeline extracting global earthquake data from USGS via REST APIs, structured data processing with Pandas and GeoJSON mapping.",
-                proj_link: "View repository", proj_demo: "View demo",
+                proj1_title: "SafeRx AI - Intelligent Clinical Assistant", proj1_desc: "AI-powered Clinical Decision Support System (CDSS) for detecting drug incompatibilities and preventing adverse events.",
+                proj2_title: "Cardiovascular Risk Prediction", proj2_desc: "Machine Learning predictive model and epidemiological analysis on Framingham Heart Study data to evaluate 10-year coronary risk.",
+                proj3_title: "Spotify Data Analysis", proj3_desc: "Exploratory Data Analysis (EDA) and visualization of audio metrics and popularity to extract insights on Spotify music trends.",
+                proj_link: "View repository",
                 section_edu: "Education & Background",
-                edu1_date: "[COMPLETAR: Year] — In progress", edu1_title: "Applied Data Science",
+                edu1_date: "2024 — In progress", edu1_title: "Applied Data Science",
                 edu2_date: "Mar 2017 — Nov 2017", edu2_title: "Commercial Management & Pharma Marketing",
                 edu3_date: "2012 — 2017", edu3_title: "Medical Studies (In progress / Coursework)", 
                 section_lang: "Languages", lang_es: "Spanish", lang_es_lvl: "Native", lang_en: "English", lang_en_lvl: "Fluent / Professional", lang_de: "German", lang_de_lvl: "Basic (A1-A2) in training",
@@ -989,7 +1113,7 @@ html_content = """<!DOCTYPE html>
                 doc_title: "Ana Colina Arismendi - Data Analyst",
                 skip_link: "Zum Hauptinhalt springen",
                 nav_profile: "Profil", nav_exp: "Erfahrung", nav_edu: "Bildung", nav_skills: "Fähigkeiten", nav_projects: "Projekte",
-                hero_title: "Data Analyst / Junior Data Scientist",
+                hero_title: "📊 Data Analyst / Junior Data Scientist",
                 pill_ml: "Machine Learning", pill_pharma: "Pharmakovigilanz",
                 btn_cv: "Lebenslauf (PDF) laden", btn_contact: "Kontakt",
                 metric_1: "Geschäftsverständnis (KAM) & regulatorische Daten", 
@@ -1013,11 +1137,12 @@ html_content = """<!DOCTYPE html>
                 skill_group2: "Pharmasektor", skill_pharma: "Pharmakovigilanz", skill_bio: "Biologische Arzneimittel", skill_safety: "Regulatorische Daten",
                 skill_group3: "Strategie & KAM", skill_crm: "CRM-Systeme", skill_plan: "Geschäftsverständnis", skill_risk: "Risikomanagement",
                 section_projects: "Data Science Projekte",
-                proj1_title: "Vorhersage des kardiovaskulären Risikos", proj1_desc: "Interaktives Machine Learning Modell, implementiert mit Scikit-learn und Streamlit zur Risikovorhersage basierend auf standardisierten Gesundheitsmetriken.",
-                proj2_title: "API-Nutzung und Analyse mit Python", proj2_desc: "ETL-Pipeline, die globale Erdbebendaten vom USGS über REST-APIs extrahiert und mit Pandas im GeoJSON-Format verarbeitet.",
-                proj_link: "Repo ansehen", proj_demo: "Demo ansehen",
+                proj1_title: "SafeRx AI - Intelligenter Klinischer Assistent", proj1_desc: "KI-gestütztes Clinical Decision Support System (CDSS) zur Erkennung von Arzneimittelunverträglichkeiten und zur Vorbeugung unerwünschter Ereignisse.",
+                proj2_title: "Vorhersage des kardiovaskulären Risikos", proj2_desc: "Prädiktives Machine Learning Modell und epidemiologische Analyse der Framingham Heart Study Daten zur Bewertung des 10-Jahres-Koronarrisikos.",
+                proj3_title: "Spotify Data Analysis", proj3_desc: "Explorative Datenanalyse (EDA) und Visualisierung von Audiometriken und Popularität zur Gewinnung von Erkenntnissen über Musiktrends auf Spotify.",
+                proj_link: "Repo ansehen",
                 section_edu: "Ausbildung",
-                edu1_date: "[COMPLETAR: Jahr] — In Bearbeitung", edu1_title: "Applied Data Science",
+                edu1_date: "2024 — In Bearbeitung", edu1_title: "Applied Data Science",
                 edu2_date: "Mär 2017 — Nov 2017", edu2_title: "Handelsmanagement und Pharma-Marketing",
                 edu3_date: "2012 — 2017", edu3_title: "Medizinstudium (in Ausbildung)", 
                 section_lang: "Sprachen", lang_es: "Spanisch", lang_es_lvl: "Muttersprache", lang_en: "Englisch", lang_en_lvl: "Fließend / Professionell", lang_de: "Deutsch", lang_de_lvl: "Grundkenntnisse (A1-A2)",
@@ -1027,7 +1152,7 @@ html_content = """<!DOCTYPE html>
                 doc_title: "Ana Colina Arismendi - Data Analyst",
                 skip_link: "Aller au contenu principal",
                 nav_profile: "Profil", nav_exp: "Expérience", nav_edu: "Éducation", nav_skills: "Compétences", nav_projects: "Projets",
-                hero_title: "Data Analyst / Junior Data Scientist",
+                hero_title: "📊 Data Analyst / Junior Data Scientist",
                 pill_ml: "Machine Learning", pill_pharma: "Pharmacovigilance",
                 btn_cv: "Télécharger le CV", btn_contact: "Contacter",
                 metric_1: "Vision métier (KAM) et données réglementaires", 
@@ -1051,11 +1176,12 @@ html_content = """<!DOCTYPE html>
                 skill_group2: "Secteur Pharmaceutique", skill_pharma: "Pharmacovigilance", skill_bio: "Médicaments Biologiques", skill_safety: "Données Réglementaires",
                 skill_group3: "Stratégie & KAM", skill_crm: "Systèmes CRM", skill_plan: "Vision Métier", skill_risk: "Gestion des Risques",
                 section_projects: "Projets Data Science",
-                proj1_title: "Prédiction du Risque Cardiovasculaire", proj1_desc: "Modèle de Machine Learning interactif implémenté avec Scikit-learn et Streamlit pour la prédiction des risques.",
-                proj2_title: "Analyse et Consommation d'API avec Python", proj2_desc: "Pipeline ETL extrayant des données sismiques mondiales de l'USGS via des API REST, traitement avec Pandas et GeoJSON.",
-                proj_link: "Voir le dépôt", proj_demo: "Voir la démo",
+                proj1_title: "SafeRx AI - Assistant Clinique Intelligent", proj1_desc: "Système d'Aide à la Décision Clinique (CDSS) alimenté par l'IA pour la détection des incompatibilités médicamenteuses et la prévention des événements indésirables.",
+                proj2_title: "Prédiction du Risque Cardiovasculaire", proj2_desc: "Modèle prédictif de Machine Learning et analyse épidémiologique des données de la Framingham Heart Study pour évaluer le risque coronarien à 10 ans.",
+                proj3_title: "Spotify Data Analysis", proj3_desc: "Analyse Exploratoire des Données (EDA) et visualisation des métriques audio et de la popularité pour extraire des insights sur les tendances musicales de Spotify.",
+                proj_link: "Voir le dépôt",
                 section_edu: "Éducation et Formation",
-                edu1_date: "[COMPLETAR: Année] — En cours", edu1_title: "Applied Data Science",
+                edu1_date: "2024 — En cours", edu1_title: "Applied Data Science",
                 edu2_date: "Mar 2017 — Nov 2017", edu2_title: "Gestion Commerciale et Marketing Pharmaceutique",
                 edu3_date: "2012 — 2017", edu3_title: "Études de médecine (en formation)", 
                 section_lang: "Langues", lang_es: "Espagnol", lang_es_lvl: "Maternel", lang_en: "Anglais", lang_en_lvl: "Courant / Professionnel", lang_de: "Allemand", lang_de_lvl: "Basique (A1-A2)",
@@ -1065,7 +1191,7 @@ html_content = """<!DOCTYPE html>
                 doc_title: "Ana Colina Arismendi - Data Analyst",
                 skip_link: "Vai al contenuto principale",
                 nav_profile: "Profilo", nav_exp: "Esperienza", nav_edu: "Formazione", nav_skills: "Competenze", nav_projects: "Progetti",
-                hero_title: "Data Analyst / Junior Data Scientist",
+                hero_title: "📊 Data Analyst / Junior Data Scientist",
                 pill_ml: "Machine Learning", pill_pharma: "Farmacovigilanza",
                 btn_cv: "Scarica CV (PDF)", btn_contact: "Contatto",
                 metric_1: "Visione aziendale (KAM) e dati normativi", 
@@ -1087,13 +1213,14 @@ html_content = """<!DOCTYPE html>
                 section_skills: "Competenze",
                 skill_group1: "Data Science & Analisi", skill_api: "Consumo di API",
                 skill_group2: "Settore Farmaceutico", skill_pharma: "Farmacovigilanza", skill_bio: "Farmaci Biologici", skill_safety: "Dati Normativi",
-                skill_group3: "Strategia & KAM", skill_crm: "Sistemi CRM", skill_plan: "Visione Aziendale", skill_risk: "Gestione del Rischio",
+                skill_group3: "Strategie & KAM", skill_crm: "Sistemi CRM", skill_plan: "Visione Aziendale", skill_risk: "Gestione del Rischio",
                 section_projects: "Progetti Data Science",
-                proj1_title: "Previsione del Rischio Cardiovascolare", proj1_desc: "Modello di Machine Learning interattivo implementato con Scikit-learn e Streamlit per la previsione del rischio.",
-                proj2_title: "Consumo di API e Analisi con Python", proj2_desc: "Pipeline ETL che estrae dati sismici globali dall'USGS tramite API REST, elaborazione con Pandas e mappatura GeoJSON.",
-                proj_link: "Vedi repository", proj_demo: "Vedi demo",
+                proj1_title: "SafeRx AI - Assistente Clinico Intelligente", proj1_desc: "Sistema di Supporto alle Decisioni Cliniche (CDSS) basato su IA per il rilevamento di incompatibilità farmacologiche e la prevenzione di eventi avversi.",
+                proj2_title: "Previsione del Rischio Cardiovascolare", proj2_desc: "Modello predittivo di Machine Learning e analisi epidemiologica sui dati del Framingham Heart Study per valutare il rischio coronarico a 10 anni.",
+                proj3_title: "Spotify Data Analysis", proj3_desc: "Analisi Esplorativa dei Dati (EDA) e visualizzazione delle metriche audio e di popolarità per estrarre insight sulle tendenze musicali di Spotify.",
+                proj_link: "Vedi repository",
                 section_edu: "Formazione",
-                edu1_date: "[COMPLETAR: Anno] — In corso", edu1_title: "Applied Data Science",
+                edu1_date: "2024 — In corso", edu1_title: "Applied Data Science",
                 edu2_date: "Mar 2017 — Nov 2017", edu2_title: "Gestione Commerciale e Marketing Farmaceutico",
                 edu3_date: "2012 — 2017", edu3_title: "Studi di Medicina (in formazione)", 
                 section_lang: "Lingue", lang_es: "Spagnolo", lang_es_lvl: "Madrelingua", lang_en: "Inglese", lang_en_lvl: "Fluente / Professionale", lang_de: "Tedesco", lang_de_lvl: "Base (A1-A2)",
@@ -1120,9 +1247,6 @@ html_content = """<!DOCTYPE html>
             });
 
             document.documentElement.lang = lang;
-            
-            // Actualizar PDF enlace según idioma
-            document.getElementById('cv-link').setAttribute('href', `CV_AColina_${lang.toUpperCase()}.pdf`);
             
             // Actualizar título del documento
             if(translation['doc_title']) {
